@@ -1,0 +1,6 @@
+	{{Urmom_ArcMain_idle0},{0,0,216,164},{110,160}},
+	{{Urmom_ArcMain_down0},{0,0,170,134},{72,131}},
+	{{Urmom_ArcMain_down1},{0,0,174,138},{78,134}},
+	{{Urmom_ArcMain_down2},{0,0,170,142},{77,137}},
+	{{Urmom_ArcMain_down3},{0,0,172,142},{78,138}},
+	{{Urmom_ArcMain_down4},{0,0,172,144},{79,140}},

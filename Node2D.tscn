@@ -1,0 +1,289 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Node2D.gd" type="Script" id=1]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.5, 1 )
+colors = PoolColorArray( 0.262745, 0.611765, 0.356863, 1, 0, 0.176471, 0.168627, 1, 0.854902, 0.992157, 1, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 720
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.0588235, 0.0588235, 0.0588235, 1 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Camera" type="Camera2D" parent="."]
+rotating = true
+current = true
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Z-Axis" type="Line2D" parent="Background"]
+position = Vector2( 0.5, 0.5 )
+points = PoolVector2Array( -2000, 100, 2000, -100 )
+width = 1.0
+default_color = Color( 0, 0, 1, 1 )
+
+[node name="X-Axis" type="Line2D" parent="Background"]
+position = Vector2( 0.5, 0.5 )
+points = PoolVector2Array( -2000, 0, 2000, 0 )
+width = 1.0
+default_color = Color( 1, 0, 0, 1 )
+
+[node name="Y-Axis" type="Line2D" parent="Background"]
+position = Vector2( 0.5, 0 )
+points = PoolVector2Array( 0, -2000, 0, 2000 )
+width = 1.0
+default_color = Color( 0, 1, 0, 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 132.0
+margin_bottom = 188.0
+color = Color( 1, 1, 0, 0.294118 )
+
+[node name="Texture" type="Sprite" parent="."]
+centered = false
+region_enabled = true
+
+[node name="BG" type="CanvasLayer" parent="."]
+layer = -4
+
+[node name="Sprite" type="Sprite" parent="BG"]
+position = Vector2( 1280, 0 )
+rotation = 1.5708
+scale = Vector2( 1, 1280 )
+z_index = -10
+texture = SubResource( 2 )
+centered = false
+
+[node name="Hud" type="CanvasLayer" parent="."]
+
+[node name="Background" type="Node" parent="Hud"]
+
+[node name="ColorRect" type="ColorRect" parent="Hud/Background"]
+margin_right = 1280.0
+margin_bottom = 10.0
+color = Color( 0.0392157, 0.0392157, 0.0392157, 1 )
+
+[node name="ColorRect4" type="ColorRect" parent="Hud/Background"]
+margin_top = 10.0
+margin_right = 8.0
+margin_bottom = 540.0
+color = Color( 0.0392157, 0.0392157, 0.0392157, 1 )
+
+[node name="ColorRect5" type="ColorRect" parent="Hud/Background"]
+margin_left = 1270.0
+margin_top = 10.0
+margin_right = 1280.0
+margin_bottom = 540.0
+color = Color( 0.0392157, 0.0392157, 0.0392157, 1 )
+
+[node name="ColorRect3" type="ColorRect" parent="Hud/Background"]
+margin_top = 540.0
+margin_right = 1280.0
+margin_bottom = 720.0
+color = Color( 0.0392157, 0.0392157, 0.0392157, 1 )
+
+[node name="Texts" type="Node" parent="Hud"]
+
+[node name="Texture Name" type="TextEdit" parent="Hud/Texts"]
+margin_left = 311.0
+margin_top = 552.0
+margin_right = 441.0
+margin_bottom = 574.0
+text = "idle0"
+readonly = true
+
+[node name="Animation Name" type="TextEdit" parent="Hud/Texts"]
+margin_left = 311.0
+margin_top = 595.0
+margin_right = 441.0
+margin_bottom = 617.0
+text = "idle"
+readonly = true
+
+[node name="Label" type="Label" parent="Hud/Texts"]
+margin_left = 8.0
+margin_top = 552.0
+margin_right = 201.0
+margin_bottom = 710.0
+text = "[Offsets]
+Movements: Arrow Keys
+(Hold Shift to speed up x10)
+
+[Camera]
+Movements: W/A/S/D
+Zooms: Q/E"
+
+[node name="Scale" type="Label" parent="Hud/Texts"]
+margin_left = 17.0
+margin_top = 16.0
+margin_right = 201.0
+margin_bottom = 134.0
+text = "Scale: 100%"
+
+[node name="FramesList" type="ItemList" parent="Hud/Texts"]
+margin_left = 804.0
+margin_top = 552.0
+margin_right = 1270.0
+margin_bottom = 710.0
+custom_colors/font_color_selected = Color( 0.917647, 1, 0, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_styles/bg = SubResource( 3 )
+items = [ "", null, false ]
+
+[node name="X" type="TextEdit" parent="Hud/Texts"]
+margin_left = 517.0
+margin_top = 552.0
+margin_right = 559.0
+margin_bottom = 573.0
+text = "0"
+
+[node name="XLabel" type="Label" parent="Hud/Texts"]
+margin_left = 462.0
+margin_top = 556.0
+margin_right = 517.0
+margin_bottom = 570.0
+text = "X:"
+
+[node name="Y" type="TextEdit" parent="Hud/Texts"]
+margin_left = 625.0
+margin_top = 552.0
+margin_right = 667.0
+margin_bottom = 573.0
+text = "0"
+
+[node name="YLabel" type="Label" parent="Hud/Texts"]
+margin_left = 570.0
+margin_top = 556.0
+margin_right = 625.0
+margin_bottom = 570.0
+text = "Y:"
+
+[node name="W" type="TextEdit" parent="Hud/Texts"]
+margin_left = 517.0
+margin_top = 579.0
+margin_right = 559.0
+margin_bottom = 600.0
+text = "0"
+
+[node name="Width" type="Label" parent="Hud/Texts"]
+margin_left = 462.0
+margin_top = 582.0
+margin_right = 517.0
+margin_bottom = 596.0
+text = "Width:"
+
+[node name="H" type="TextEdit" parent="Hud/Texts"]
+margin_left = 625.0
+margin_top = 579.0
+margin_right = 667.0
+margin_bottom = 600.0
+text = "0"
+
+[node name="Height" type="Label" parent="Hud/Texts"]
+margin_left = 570.0
+margin_top = 582.0
+margin_right = 625.0
+margin_bottom = 596.0
+text = "Height:"
+
+[node name="Buttons" type="Node" parent="Hud"]
+
+[node name="Load Texture" type="Button" parent="Hud/Buttons"]
+margin_left = 210.0
+margin_top = 552.0
+margin_right = 304.0
+margin_bottom = 574.0
+disabled = true
+text = "Load Texture"
+
+[node name="Load Animation" type="Button" parent="Hud/Buttons"]
+margin_left = 210.0
+margin_top = 579.0
+margin_right = 304.0
+margin_bottom = 601.0
+disabled = true
+text = "Load Anim"
+
+[node name="Save Animation" type="Button" parent="Hud/Buttons"]
+margin_left = 210.0
+margin_top = 606.0
+margin_right = 304.0
+margin_bottom = 628.0
+disabled = true
+text = "Save Anim"
+
+[node name="Load Folder" type="Button" parent="Hud/Buttons"]
+margin_left = 210.0
+margin_top = 633.0
+margin_right = 304.0
+margin_bottom = 655.0
+text = "Load Folder"
+
+[node name="Export C" type="Button" parent="Hud/Buttons"]
+margin_left = 210.0
+margin_top = 660.0
+margin_right = 304.0
+margin_bottom = 682.0
+text = "Export C"
+
+[node name="Play" type="Button" parent="Hud/Buttons"]
+margin_left = 721.0
+margin_top = 682.0
+margin_right = 759.0
+margin_bottom = 704.0
+text = "Play"
+
+[node name="Add Frame" type="Button" parent="Hud/Buttons"]
+margin_left = 679.0
+margin_top = 552.0
+margin_right = 794.0
+margin_bottom = 574.0
+text = "Add Frame"
+
+[node name="Remove Frame" type="Button" parent="Hud/Buttons"]
+margin_left = 679.0
+margin_top = 579.0
+margin_right = 794.0
+margin_bottom = 601.0
+text = "Remove Frame"
+
+[node name="Replace Frame" type="Button" parent="Hud/Buttons"]
+margin_left = 679.0
+margin_top = 606.0
+margin_right = 794.0
+margin_bottom = 628.0
+text = "Replace Frame"
+
+[node name="Popups" type="Node" parent="Hud"]
+
+[node name="Popup(Load)" type="FileDialog" parent="Hud/Popups"]
+margin_left = 8.0
+margin_top = 30.0
+margin_right = 1270.0
+margin_bottom = 710.0
+window_title = "Open a Directory"
+mode = 2
+access = 2
+
+[connection signal="item_selected" from="Hud/Texts/FramesList" to="." method="_on_FramesList_item_selected"]
+[connection signal="pressed" from="Hud/Buttons/Load Texture" to="." method="_on_Load_Texutre_pressed"]
+[connection signal="pressed" from="Hud/Buttons/Load Animation" to="." method="_on_Load_Animation_pressed"]
+[connection signal="pressed" from="Hud/Buttons/Save Animation" to="." method="_on_Save_Animation_pressed"]
+[connection signal="pressed" from="Hud/Buttons/Load Folder" to="." method="_on_Load_Folder_pressed"]
+[connection signal="pressed" from="Hud/Buttons/Export C" to="." method="_on_Export_C_pressed"]
+[connection signal="pressed" from="Hud/Buttons/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="Hud/Buttons/Add Frame" to="." method="_on_Add_Frame_pressed"]
+[connection signal="pressed" from="Hud/Buttons/Remove Frame" to="." method="_on_Remove_Frame_pressed"]
+[connection signal="pressed" from="Hud/Buttons/Replace Frame" to="." method="_on_Replace_Frame_pressed"]
+[connection signal="dir_selected" from="Hud/Popups/Popup(Load)" to="." method="_on_PopupLoad_dir_selected"]
