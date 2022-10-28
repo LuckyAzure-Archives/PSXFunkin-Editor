@@ -211,9 +211,9 @@ func _on_Export_C_pressed():
 		printerr("Could not write file, error code ", err)
 		return
 	var file_data = ""
-	var animatname = "Urmom"
+	var animatname = "Char"
 	for i in framesdata.size():
-		file_data += "	{{" + animatname + "_ArcMain_" + framesdata[i][0] + "},{" 
+		file_data += "	{" + animatname + "_ArcMain_" + framesdata[i][0] + ",{" 
 		file_data += str(framesdata[i][1][0]) + "," + str(framesdata[i][1][1]) + "," + str(framesdata[i][1][2]) + "," + str(framesdata[i][1][3]) + "},{"
 		file_data += str(framesdata[i][2][0]) + "," + str(framesdata[i][2][1]) + "}},\n"
 	print(file_data)
