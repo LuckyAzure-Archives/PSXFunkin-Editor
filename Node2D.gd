@@ -71,8 +71,8 @@ func _on_PopupLoad_dir_selected(dir):
 	$"Hud/Texts/Animation Name".readonly = false
 	$"Hud/Buttons/Load Animation".disabled = false
 	$"Hud/Buttons/Save Animation".disabled = false
-	$"Hud/Texts/Texture Name".readonly = true
-	$"Hud/Buttons/Load Texture".disabled = true
+	$"Hud/Texts/Texture Name".readonly = false
+	$"Hud/Buttons/Load Texture".disabled = false
 
 #---------------------------------------------------------------------
 
@@ -103,8 +103,6 @@ func _on_Load_Animation_pressed():
 	f.close()
 	framesdata = data.data
 	reloadlist()
-	$"Hud/Texts/Texture Name".readonly = false
-	$"Hud/Buttons/Load Texture".disabled = false
 
 func _on_Save_Animation_pressed():
 	var f = File.new()
