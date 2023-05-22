@@ -47,18 +47,16 @@ func load_anim():
 		get_parent().get_node("Frames/FramesList").select(0)
 
 func save_anim():
-	for i in Global.data.animations.size():
-		if Global.data.animations[i].name == CurrentAnimation:
-			Global.data.animations[i].data = Global.framesdata
-			Global.data.animations[i].name = $Animation/Name.text
-			Global.data.animations[i].speed = $"Animation Player/Speed".value
-			Global.data.animations[i].loop = $"Animation Player/Loop".pressed
-			Global.data.animations[i].anim_type = $OptionButton.selected
-			CurrentAnimation = $Animation/Name.text
+	Global.data.animations[SelectedAnimation].data = Global.framesdata
+	Global.data.animations[SelectedAnimation].name = $Animation/Name.text
+	Global.data.animations[SelectedAnimation].speed = $"Animation Player/Speed".value
+	Global.data.animations[SelectedAnimation].loop = $"Animation Player/Loop".pressed
+	CurrentAnimation = $Animation/Name.text
 
 func _on_Remove_pressed():
 	if Global.data.animations[SelectedAnimation].name == CurrentAnimation:
 		CurrentAnimation = null
+		SelectedAnimation = null
 		Global.framesdata = []
 	Global.data.animations.remove(SelectedAnimation)
 	reloadlist()
@@ -89,10 +87,6 @@ func _Animation(delta):
 		get_parent().get_node("Frames")._reloadoffsets(Global.framesdata[int(animframe)])
 		animcooldown = Global.data.animations[SelectedAnimation].speed
 
-
-func _on_OptionButton_item_selected(index):
-	save_anim()
-
 func _on_Speed_value_changed(value):
 	print("aaaa")
 	save_anim()
@@ -102,6 +96,5 @@ func _on_Loop_toggled(button_pressed):
 
 
 func _on_Button_pressed():
-	for i in Global.data.animations.size():
-		if Global.data.animations[i].name == CurrentAnimation:
-			Global.data.animations[i].end = $"Animation/End".text
+	Global.data.animations[SelectedAnimation].end = $"Animation/End".text
+	Global.data.animations[SelectedAnimation].anim_type = $OptionButton.selected
