@@ -12,10 +12,23 @@ func _on_New_dir_selected(dir):
 	Global.path = dir
 	var f = File.new()
 	f.open(dir + "/data.json", File.WRITE)
-	var file_data = {"name":"Char","hb_color":"808080","size":1,"animations":[],"player":false}
+	var file_data = {
+		"name":"Char",
+		"size":1,
+		"hb_color":"808080",
+		"focus_x":-30,
+		"focus_y":-90,
+		"focus_zoom":1,
+		"player":false,
+		"icons":[
+			[0,0,41,25],
+			[42,0,41,27]
+		],
+		"animations":[]
+	}
 	f.store_line(to_json(file_data))
 	f.close()
-	get_tree().get_current_scene().Load({"name":"Char","hb_color":"808080","size":1,"animations":[],"player":false})
+	get_tree().get_current_scene().Load(file_data)
 
 func _on_Load_Data_pressed():
 	get_parent().get_node("Load").popup()

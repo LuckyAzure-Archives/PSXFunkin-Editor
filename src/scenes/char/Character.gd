@@ -11,3 +11,4 @@ func _reload(pressed):
 	else:
 		for i in Global.config.CharAnim.size():
 			get_parent().get_node("Animations/OptionButton").add_item(Global.config.CharAnim[i])
+

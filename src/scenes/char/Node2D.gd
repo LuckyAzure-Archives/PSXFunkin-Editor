@@ -11,7 +11,7 @@ func _process(delta):
 	$Camera.CameraMovements(delta)
 	$Hud/Frames.OffsetMovements()
 	$Texture.Offset($Hud/Frames/Offsets/X.value,$Hud/Frames/Offsets/Y.value,$Hud/Frames/Offsets/W.value,$Hud/Frames/Offsets/H.value)
-	$Texture.Position($Hud/Frames/Positions/X.value,$Hud/Frames/Positions/Y.value, $Hud/Character/Size.value)
+	$Texture.Position($Hud/Frames/Positions/X.value,$Hud/Frames/Positions/Y.value, $Hud/Properties/Size.value)
 	Status(delta)
 
 func _physics_process(delta):
@@ -19,7 +19,7 @@ func _physics_process(delta):
 
 func Status(delta):
 	$Hud/ErrorText.modulate.a -= 0.25 * delta
-	$TextureBack.TextureBack($Texture.position,$Texture.region_rect.size,$Hud/Character/Size.value)
+	$TextureBack.TextureBack($Texture.position,$Texture.region_rect.size,$Hud/Properties/Size.value)
 	$Hud/Info.text = "Position: " + str(stepify($Camera.position.x,1)) + ", " + str(stepify($Camera.position.y,1)) + "\n"
 	$Hud/Info.text += "Scale: " + str(stepify($Camera.zoom.x * 100,1)) + "%\n"
 	$Hud/Info.text += "Animation: " + str($Hud/Animations.CurrentAnimation) + "\n"
@@ -59,27 +59,68 @@ func Load(loaddata):
 		Global.data.merge({"player":false},false)
 	
 	UnlockButtons()
-	$Hud/Character/Name.text = Global.data.name
-	$"Hud/Character/HB Color".text = Global.data.hb_color
-	$Hud/Character/Size.value = Global.data.size
-	$Hud/Character/Player.pressed = Global.data.player
+	$Hud/Properties/Name.text = Global.data.name
+	$"Hud/Properties/HB Color".text = Global.data.hb_color
+	$Hud/Properties/Size.value = Global.data.size
+	$Hud/Properties/Player.pressed = Global.data.player
+	$"Hud/Properties/Focus X".value = Global.data.focus_x
+	$"Hud/Properties/Focus Y".value = Global.data.focus_y
+	$"Hud/Properties/Focus Zoom".value = Global.data.focus_zoom
+	
+	$Hud/Properties/X1.value = Global.data.icons[0][0]
+	$Hud/Properties/Y1.value = Global.data.icons[0][1]
+	$Hud/Properties/W1.value = Global.data.icons[0][2]
+	$Hud/Properties/H1.value = Global.data.icons[0][3]
+	
+	$Hud/Properties/X2.value = Global.data.icons[1][0]
+	$Hud/Properties/Y2.value = Global.data.icons[1][1]
+	$Hud/Properties/W2.value = Global.data.icons[1][2]
+	$Hud/Properties/H2.value = Global.data.icons[1][3]
+	
 	$Hud/Character._reload(Global.data.player)
 	$Hud/Animations.reloadlist()
 
 func Save():
-	Global.data.name = $Hud/Character/Name.text
-	Global.data.hb_color = $"Hud/Character/HB Color".text
-	Global.data.size = $Hud/Character/Size.value
-	Global.data.player = $Hud/Character/Player.pressed
+	Global.data.name = $Hud/Properties/Name.text
+	Global.data.hb_color = $"Hud/Properties/HB Color".text
+	Global.data.size = $Hud/Properties/Size.value
+	Global.data.player = $Hud/Properties/Player.pressed
+	Global.data.focus_x = $"Hud/Properties/Focus X".value
+	Global.data.focus_y = $"Hud/Properties/Focus Y".value
+	Global.data.focus_zoom = $"Hud/Properties/Focus Zoom".value
+	
+	Global.data.icons[0][0] = $Hud/Properties/X1.value
+	Global.data.icons[0][1] = $Hud/Properties/Y1.value
+	Global.data.icons[0][2] = $Hud/Properties/W1.value
+	Global.data.icons[0][3] = $Hud/Properties/H1.value
+	
+	Global.data.icons[1][0] = $Hud/Properties/X2.value
+	Global.data.icons[1][1] = $Hud/Properties/Y2.value
+	Global.data.icons[1][2] = $Hud/Properties/W2.value
+	Global.data.icons[1][3] = $Hud/Properties/H2.value
+	
 	return Global.data
 
 func UnlockButtons():
 	$Hud/File/Save.disabled = false
 	$Hud/File/Export.disabled = false
 	
-	$Hud/Character/Name.readonly = false
-	$"Hud/Character/HB Color".readonly = false
-	$"Hud/Character/Size".editable = true
+	$Hud/Properties/Name.readonly = false
+	$"Hud/Properties/HB Color".readonly = false
+	$"Hud/Properties/Size".editable = true
+	$"Hud/Properties/Focus X".editable = true
+	$"Hud/Properties/Focus Y".editable = true
+	$"Hud/Properties/Focus Zoom".editable = true
+	
+	$Hud/Properties/X1.editable = true
+	$Hud/Properties/Y1.editable = true
+	$Hud/Properties/W1.editable = true
+	$Hud/Properties/H1.editable = true
+	
+	$Hud/Properties/X2.editable = true
+	$Hud/Properties/Y2.editable = true
+	$Hud/Properties/W2.editable = true
+	$Hud/Properties/H2.editable = true
 	
 	$Hud/Animations/Animation/New.disabled = false
 	$Hud/Animations/Animation/Name.readonly = false

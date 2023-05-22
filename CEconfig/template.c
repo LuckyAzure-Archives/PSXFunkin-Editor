@@ -26,6 +26,10 @@ typedef struct
 } Char_<CharacterName>;
 
 //<CharacterName> character definitions
+static const u16 char_<charactername>_icons[2][4] = {
+<IconsHere>
+};
+
 static const CharFrame char_<charactername>_frame[] = {
 <FramesHere>
 };
@@ -54,7 +58,7 @@ void Char_<CharacterName>_Tick(Character *character)
 	Char_<CharacterName> *this = (Char_<CharacterName>*)character;
 	
 	//Perform idle dance
-	if ((character->pad_held & (INPUT_LEFT | INPUT_DOWN | INPUT_UP | INPUT_RIGHT)) == 0)
+	if ((character->pad_held & (stage.prefs.control_keys[0] | stage.prefs.control_keys[1] | stage.prefs.control_keys[2] | stage.prefs.control_keys[3])) == 0)
 		Character_PerformIdle(character);
 	
 	//Animate and draw
@@ -99,25 +103,16 @@ Character *Char_<CharacterName>_New(fixed_t x, fixed_t y)
 	//Set character information
 	this->character.spec = 0;
 	
-	this->character.health_i[0][0] = 0;
-	this->character.health_i[0][1] = 0;
-	this->character.health_i[0][2] = 46;
-	this->character.health_i[0][3] = 30;
-	
-	this->character.health_i[1][0] = 47;
-	this->character.health_i[1][1] = 0;
-	this->character.health_i[1][2] = 43;
-	this->character.health_i[1][3] = 35;
+	memcpy(this->character.health_i, char_<charactername>_icons, sizeof(char_<charactername>_icons));
 	
 	//health bar color
 	this->character.health_bar = 0xFF<HB Color>;
 	
-	this->character.focus_x = FIXED_DEC(65,1);
-	this->character.focus_y = FIXED_DEC(-115,1);
-	this->character.focus_zoom = FIXED_DEC(1,1);
+	this->character.focus_x = FIXED_DEC(<Focus X>,1);
+	this->character.focus_y = FIXED_DEC(<Focus Y>,1);
+	this->character.focus_zoom = FIXED_DEC(<Focus Zoom>,1);
 	
 	this->character.size = FIXED_DEC(<CharSize>,100);
-	this->character.flipped = false;
 	
 	//Load art
 	this->arc_main = IO_Read("\\CHAR\\<CHARACTERNAME>.ARC;1");
