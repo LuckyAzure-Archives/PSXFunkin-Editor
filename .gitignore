@@ -13,3 +13,5 @@ data_*/
 # Exported shits
 Build/
 Assets/
+Godot_v3.5.2-stable_win64.exe
+Godot_v3.5.2-stable_win64_console.cmd

@@ -36,5 +36,5 @@
 		"PlayerAnim_Dead7"
 	],
 	"output": "src/characters",
-	"icons": "CEconfig/icons.png"
+	"icons": "iso/characters/icons.png"
 }
